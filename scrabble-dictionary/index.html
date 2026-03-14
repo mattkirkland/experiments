@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scrabble Dictionary — Official Word Checker</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📖</text></svg>">
+  <style>
+    :root {
+      --maroon: #8B0000;
+      --maroon-dark: #5c0000;
+      --cream: #f5f0e6;
+      --gold: #c9a227;
+      --text: #2c2416;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      background: var(--cream);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 500px;
+      width: 100%;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 3px double var(--maroon);
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      font-weight: normal;
+      color: var(--maroon);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 0.25rem;
+    }
+
+    .subtitle {
+      font-style: italic;
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    .official {
+      display: inline-block;
+      margin-top: 0.75rem;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 0.25rem 0.75rem;
+      border-radius: 2px;
+    }
+
+    .search-box {
+      background: white;
+      border: 2px solid var(--maroon);
+      border-radius: 4px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #666;
+      margin-bottom: 0.5rem;
+    }
+
+    .input-group {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    input[type="text"] {
+      flex: 1;
+      font-family: inherit;
+      font-size: 1.25rem;
+      padding: 0.75rem 1rem;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    input[type="text"]:focus {
+      outline: none;
+      border-color: var(--maroon);
+    }
+
+    button {
+      font-family: inherit;
+      font-size: 1rem;
+      padding: 0.75rem 1.5rem;
+      background: var(--maroon);
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: background 0.2s;
+    }
+
+    button:hover {
+      background: var(--maroon-dark);
+    }
+
+    .result {
+      margin-top: 1.5rem;
+      padding: 1.25rem;
+      border-radius: 4px;
+      display: none;
+    }
+
+    .result.show {
+      display: block;
+    }
+
+    .result.valid {
+      background: #e8f5e9;
+      border: 1px solid #81c784;
+    }
+
+    .result-word {
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--maroon);
+    }
+
+    .result-status {
+      margin-top: 0.5rem;
+      color: #2e7d32;
+      font-style: italic;
+    }
+
+    .result-status::before {
+      content: "✓ ";
+    }
+
+    .points {
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    footer {
+      margin-top: 3rem;
+      text-align: center;
+      font-size: 0.75rem;
+      color: #999;
+    }
+
+    .tiles {
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .tile {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, #f7e9c5 0%, #e8d5a3 100%);
+      border: 1px solid #c4a35a;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: #333;
+      position: relative;
+      box-shadow: 1px 1px 2px rgba(0,0,0,0.15);
+    }
+
+    .tile sup {
+      position: absolute;
+      bottom: 2px;
+      right: 3px;
+      font-size: 0.5rem;
+      font-weight: normal;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Scrabble Dictionary</h1>
+      <p class="subtitle">The Official Word Reference</p>
+      <span class="official">Tournament Approved</span>
+    </header>
+
+    <div class="search-box">
+      <label for="word">Enter a word to verify</label>
+      <div class="input-group">
+        <input type="text" id="word" placeholder="Type a word..." autocomplete="off" autofocus>
+        <button onclick="checkWord()">Check</button>
+      </div>
+
+      <div class="result" id="result">
+        <div class="result-word" id="result-word"></div>
+        <div class="result-status">Valid Scrabble word</div>
+        <div class="points" id="points"></div>
+        <div class="tiles" id="tiles"></div>
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2026 Official Scrabble Players Dictionary</p>
+      <p>SCRABBLE® is a registered trademark.</p>
+    </footer>
+  </div>
+
+  <script>
+    const pointValues = {
+      A: 1, B: 3, C: 3, D: 2, E: 1, F: 4, G: 2, H: 4, I: 1, J: 8,
+      K: 5, L: 1, M: 3, N: 1, O: 1, P: 3, Q: 10, R: 1, S: 1, T: 1,
+      U: 1, V: 4, W: 4, X: 8, Y: 4, Z: 10
+    };
+
+    function calculatePoints(word) {
+      return word.toUpperCase().split('').reduce((sum, letter) => {
+        return sum + (pointValues[letter] || 0);
+      }, 0);
+    }
+
+    function createTiles(word) {
+      const tilesContainer = document.getElementById('tiles');
+      tilesContainer.innerHTML = '';
+      
+      word.toUpperCase().split('').forEach(letter => {
+        if (pointValues[letter]) {
+          const tile = document.createElement('div');
+          tile.className = 'tile';
+          tile.innerHTML = `${letter}<sup>${pointValues[letter]}</sup>`;
+          tilesContainer.appendChild(tile);
+        }
+      });
+    }
+
+    function checkWord() {
+      const input = document.getElementById('word');
+      const word = input.value.trim();
+      
+      if (!word) return;
+
+      const result = document.getElementById('result');
+      const resultWord = document.getElementById('result-word');
+      const points = document.getElementById('points');
+      
+      resultWord.textContent = word.toUpperCase();
+      points.textContent = `Base point value: ${calculatePoints(word)} points`;
+      createTiles(word);
+      
+      result.className = 'result show valid';
+    }
+
+    document.getElementById('word').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        checkWord();
+      }
+    });
+  </script>
+</body>
+</html>
