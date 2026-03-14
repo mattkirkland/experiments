@@ -4,36 +4,148 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Experiments | Matt Kirkland</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧪</text></svg>">
   <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #12121a;
+      --border: #2a2a3a;
+      --text: #e8e8ed;
+      --muted: #6b6b80;
+      --accent: #7c5cff;
+      --accent-dim: #5a3fd4;
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
       min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    header {
+      margin-bottom: 3rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
       display: flex;
       align-items: center;
-      justify-content: center;
-      background: #111;
-      color: #fff;
+      gap: 0.5rem;
     }
-    .container {
-      text-align: center;
-      padding: 2rem;
-    }
-    h1 {
-      font-size: 2.5rem;
-      font-weight: 300;
-      margin-bottom: 0.5rem;
-    }
-    p {
-      color: #888;
+
+    .subtitle {
+      color: var(--muted);
       font-size: 1.1rem;
+    }
+
+    .experiments {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .experiment {
+      display: block;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s ease;
+    }
+
+    .experiment:hover {
+      border-color: var(--accent-dim);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(124, 92, 255, 0.1);
+    }
+
+    .experiment h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .experiment p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .experiment .meta {
+      margin-top: 0.75rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      opacity: 0.7;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--muted);
+    }
+
+    .empty-state .icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+
+    footer {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>🧪 Experiments</h1>
-    <p>Coming soon.</p>
+    <header>
+      <h1>🧪 Experiments</h1>
+      <p class="subtitle">Quick web experiments and prototypes by Matt Kirkland</p>
+    </header>
+
+    <main class="experiments">
+      <div class="empty-state">
+        <div class="icon">🔬</div>
+        <p>Experiments coming soon.</p>
+      </div>
+
+      <!-- Template for future experiments:
+      <a href="/experiment-name/" class="experiment">
+        <h2>Experiment Title</h2>
+        <p>Brief description of what this experiment does or explores.</p>
+        <div class="meta">March 2026</div>
+      </a>
+      -->
+    </main>
+
+    <footer>
+      <p>Back to <a href="https://mattkirkland.com">mattkirkland.com</a></p>
+    </footer>
   </div>
 </body>
 </html>
