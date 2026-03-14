@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Felix Runs</title>
+  <style>
+    :root {
+      --bg: #fafaf9;
+      --card: #ffffff;
+      --text: #1c1917;
+      --muted: #78716c;
+      --accent: #ea580c;
+      --border: #e7e5e4;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    header {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    
+    h1 span {
+      display: inline-block;
+      margin-right: 0.5rem;
+    }
+    
+    .subtitle {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 1.5rem 0;
+      padding: 1rem;
+      background: var(--card);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    
+    .stat {
+      text-align: center;
+    }
+    
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .runs {
+      list-style: none;
+    }
+    
+    .run {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+    }
+    
+    .run-date {
+      font-weight: 500;
+    }
+    
+    .run-day {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    
+    .run-miles {
+      font-weight: 600;
+      color: var(--accent);
+    }
+    
+    footer {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><span>🐕</span> Felix Runs</h1>
+    <p class="subtitle">Tracking our good boy's adventures</p>
+  </header>
+  
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-value" id="total-runs">5</div>
+      <div class="stat-label">Total Runs</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value" id="total-miles">8.2</div>
+      <div class="stat-label">Total Miles</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value" id="avg-miles">1.6</div>
+      <div class="stat-label">Avg Miles</div>
+    </div>
+  </div>
+  
+  <ul class="runs">
+    <li class="run">
+      <div>
+        <div class="run-date">March 14, 2026</div>
+        <div class="run-day">Friday</div>
+      </div>
+      <div class="run-miles">1.8 mi</div>
+    </li>
+    <li class="run">
+      <div>
+        <div class="run-date">March 12, 2026</div>
+        <div class="run-day">Wednesday</div>
+      </div>
+      <div class="run-miles">2.1 mi</div>
+    </li>
+    <li class="run">
+      <div>
+        <div class="run-date">March 10, 2026</div>
+        <div class="run-day">Monday</div>
+      </div>
+      <div class="run-miles">1.5 mi</div>
+    </li>
+    <li class="run">
+      <div>
+        <div class="run-date">March 8, 2026</div>
+        <div class="run-day">Saturday</div>
+      </div>
+      <div class="run-miles">1.2 mi</div>
+    </li>
+    <li class="run">
+      <div>
+        <div class="run-date">March 6, 2026</div>
+        <div class="run-day">Thursday</div>
+      </div>
+      <div class="run-miles">1.6 mi</div>
+    </li>
+  </ul>
+  
+  <footer>
+    🐾 Keep running, Felix!
+  </footer>
+</body>
+</html>
