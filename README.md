@@ -27,8 +27,8 @@ Use the template in `index.html`:
 Every experiment page needs these in the `<head>`:
 
 ```html
-<!-- Plausible Analytics -->
-<script async defer data-domain="experiments.mattkirkland.com" src="https://plausible.io/js/plausible.js"></script>
+<!-- Plausible Analytics (use main domain, NOT subdomain) -->
+<script async defer data-domain="mattkirkland.com" src="https://plausible.io/js/plausible.js"></script>
 
 <!-- Open Graph -->
 <meta property="og:title" content="Your Experiment Title">
