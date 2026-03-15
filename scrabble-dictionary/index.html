@@ -22,230 +22,438 @@
   <meta name="twitter:image" content="https://experiments.mattkirkland.com/scrabble-dictionary/og-image.png">
   
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📖</text></svg>">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+  
   <style>
     :root {
-      --maroon: #8B0000;
-      --maroon-dark: #5c0000;
-      --cream: #f5f0e6;
-      --gold: #c9a227;
-      --text: #2c2416;
+      --harvest-gold: #daa520;
+      --gold-light: #f4d03f;
+      --gold-dark: #b8860b;
+      --avocado: #568203;
+      --avocado-dark: #3d5c02;
+      --cream: #faf6e9;
+      --cream-dark: #f0e6c8;
+      --wood-brown: #8b4513;
+      --wood-light: #a0522d;
+      --tile-cream: #f5e6c8;
+      --tile-shadow: #d4c4a8;
+      --text-dark: #2c1810;
+      --text-brown: #5c3a21;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: Georgia, "Times New Roman", serif;
-      background: var(--cream);
-      color: var(--text);
+      font-family: 'Source Serif 4', Georgia, serif;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      background: 
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"),
+        linear-gradient(180deg, var(--cream) 0%, var(--cream-dark) 100%);
+      background-blend-mode: overlay, normal;
+      color: var(--text-dark);
+    }
+
+    .page-border {
+      min-height: 100vh;
       padding: 2rem;
+      background: 
+        linear-gradient(90deg, var(--wood-brown) 0%, var(--wood-brown) 8px, transparent 8px),
+        linear-gradient(90deg, transparent calc(100% - 8px), var(--wood-brown) calc(100% - 8px)),
+        linear-gradient(180deg, var(--wood-brown) 0%, var(--wood-brown) 8px, transparent 8px),
+        linear-gradient(180deg, transparent calc(100% - 8px), var(--wood-brown) calc(100% - 8px));
     }
 
     .container {
-      max-width: 500px;
-      width: 100%;
+      max-width: 580px;
+      margin: 0 auto;
+      padding: 2rem 0;
     }
 
     header {
       text-align: center;
-      margin-bottom: 2rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 3px double var(--maroon);
+      margin-bottom: 2.5rem;
+      animation: fadeSlideDown 0.8s ease-out;
+    }
+
+    @keyframes fadeSlideDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .emblem {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1.5rem;
+      background: linear-gradient(135deg, var(--avocado) 0%, var(--avocado-dark) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 
+        0 4px 0 var(--avocado-dark),
+        0 6px 20px rgba(0,0,0,0.2),
+        inset 0 2px 0 rgba(255,255,255,0.2);
+      position: relative;
+    }
+
+    .emblem::after {
+      content: '';
+      position: absolute;
+      inset: 4px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+    }
+
+    .emblem-letter {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--cream);
+      text-shadow: 0 2px 0 rgba(0,0,0,0.3);
     }
 
     h1 {
-      font-size: 1.8rem;
-      font-weight: normal;
-      color: var(--maroon);
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 6vw, 2.8rem);
+      font-weight: 900;
+      color: var(--wood-brown);
       text-transform: uppercase;
-      letter-spacing: 0.15em;
-      margin-bottom: 0.25rem;
+      letter-spacing: 0.08em;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+      text-shadow: 2px 2px 0 rgba(255,255,255,0.8);
     }
 
     .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-brown);
       font-style: italic;
-      color: #666;
-      font-size: 0.95rem;
+      margin-bottom: 1rem;
     }
 
-    .official {
-      display: inline-block;
-      margin-top: 0.75rem;
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, var(--harvest-gold) 0%, var(--gold-dark) 100%);
+      color: var(--text-dark);
       font-size: 0.7rem;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: var(--gold);
-      border: 1px solid var(--gold);
-      padding: 0.25rem 0.75rem;
+      letter-spacing: 0.15em;
+      padding: 0.5rem 1rem;
       border-radius: 2px;
+      box-shadow: 
+        0 2px 0 var(--gold-dark),
+        0 4px 8px rgba(0,0,0,0.15);
     }
 
-    .search-box {
-      background: white;
-      border: 2px solid var(--maroon);
+    .badge::before {
+      content: '★';
+    }
+
+    .badge::after {
+      content: '★';
+    }
+
+    .search-card {
+      background: var(--cream);
+      border: 3px solid var(--wood-brown);
       border-radius: 4px;
-      padding: 1.5rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 2rem;
+      box-shadow: 
+        6px 6px 0 var(--wood-light),
+        0 10px 30px rgba(0,0,0,0.15);
+      animation: fadeSlideUp 0.8s ease-out 0.2s both;
+    }
+
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     label {
       display: block;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
+      font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      color: #666;
-      margin-bottom: 0.5rem;
+      color: var(--text-brown);
+      margin-bottom: 0.75rem;
     }
 
     .input-group {
       display: flex;
-      gap: 0.5rem;
+      gap: 0.75rem;
     }
 
     input[type="text"] {
       flex: 1;
-      font-family: inherit;
-      font-size: 1.25rem;
-      padding: 0.75rem 1rem;
-      border: 1px solid #ccc;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      padding: 0.875rem 1.25rem;
+      border: 2px solid var(--wood-brown);
       border-radius: 3px;
+      background: #fff;
+      color: var(--text-dark);
       text-transform: uppercase;
       letter-spacing: 0.05em;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+      transition: all 0.2s ease;
     }
 
     input[type="text"]:focus {
       outline: none;
-      border-color: var(--maroon);
+      border-color: var(--avocado);
+      box-shadow: 
+        inset 0 2px 4px rgba(0,0,0,0.1),
+        0 0 0 3px rgba(86, 130, 3, 0.2);
+    }
+
+    input[type="text"]::placeholder {
+      color: #bbb;
+      font-weight: 400;
+      text-transform: none;
     }
 
     button {
-      font-family: inherit;
+      font-family: 'Source Serif 4', serif;
       font-size: 1rem;
-      padding: 0.75rem 1.5rem;
-      background: var(--maroon);
-      color: white;
+      font-weight: 600;
+      padding: 0.875rem 1.75rem;
+      background: linear-gradient(180deg, var(--avocado) 0%, var(--avocado-dark) 100%);
+      color: #fff;
       border: none;
       border-radius: 3px;
       cursor: pointer;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      transition: background 0.2s;
+      box-shadow: 
+        0 3px 0 #2d4401,
+        0 5px 10px rgba(0,0,0,0.2);
+      transition: all 0.15s ease;
     }
 
     button:hover {
-      background: var(--maroon-dark);
+      transform: translateY(-1px);
+      box-shadow: 
+        0 4px 0 #2d4401,
+        0 7px 14px rgba(0,0,0,0.25);
+    }
+
+    button:active {
+      transform: translateY(2px);
+      box-shadow: 
+        0 1px 0 #2d4401,
+        0 2px 4px rgba(0,0,0,0.2);
     }
 
     .result {
-      margin-top: 1.5rem;
-      padding: 1.25rem;
-      border-radius: 4px;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 2px dashed var(--wood-brown);
       display: none;
+      animation: resultReveal 0.5s ease-out;
+    }
+
+    @keyframes resultReveal {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
     }
 
     .result.show {
       display: block;
     }
 
-    .result.valid {
-      background: #e8f5e9;
-      border: 1px solid #81c784;
+    .result-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
     }
 
     .result-word {
-      font-size: 1.5rem;
-      font-weight: bold;
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--avocado-dark);
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      color: var(--maroon);
     }
 
     .result-status {
-      margin-top: 0.5rem;
-      color: #2e7d32;
-      font-style: italic;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--avocado);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.4rem 0.8rem;
+      border-radius: 2px;
     }
 
     .result-status::before {
-      content: "✓ ";
-    }
-
-    .points {
-      margin-top: 0.75rem;
-      font-size: 0.85rem;
-      color: #666;
-    }
-
-    footer {
-      margin-top: 3rem;
-      text-align: center;
-      font-size: 0.75rem;
-      color: #999;
+      content: '✓';
+      font-weight: bold;
     }
 
     .tiles {
       display: flex;
       justify-content: center;
-      gap: 4px;
-      margin-top: 1rem;
+      gap: 6px;
+      margin: 1.5rem 0;
       flex-wrap: wrap;
     }
 
     .tile {
-      width: 36px;
-      height: 36px;
-      background: linear-gradient(135deg, #f7e9c5 0%, #e8d5a3 100%);
-      border: 1px solid #c4a35a;
-      border-radius: 3px;
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(145deg, var(--tile-cream) 0%, #e8d9b8 100%);
+      border: 1px solid #c9b896;
+      border-radius: 4px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.25rem;
-      font-weight: bold;
-      color: #333;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--text-dark);
       position: relative;
-      box-shadow: 1px 1px 2px rgba(0,0,0,0.15);
+      box-shadow: 
+        1px 1px 0 #fff inset,
+        -1px -1px 0 var(--tile-shadow) inset,
+        2px 2px 4px rgba(0,0,0,0.15);
+      animation: tilePopIn 0.3s ease-out backwards;
+    }
+
+    .tile:nth-child(1) { animation-delay: 0.05s; }
+    .tile:nth-child(2) { animation-delay: 0.1s; }
+    .tile:nth-child(3) { animation-delay: 0.15s; }
+    .tile:nth-child(4) { animation-delay: 0.2s; }
+    .tile:nth-child(5) { animation-delay: 0.25s; }
+    .tile:nth-child(6) { animation-delay: 0.3s; }
+    .tile:nth-child(7) { animation-delay: 0.35s; }
+    .tile:nth-child(8) { animation-delay: 0.4s; }
+    .tile:nth-child(9) { animation-delay: 0.45s; }
+    .tile:nth-child(10) { animation-delay: 0.5s; }
+
+    @keyframes tilePopIn {
+      from { opacity: 0; transform: scale(0.5) rotate(-10deg); }
+      to { opacity: 1; transform: scale(1) rotate(0); }
     }
 
     .tile sup {
       position: absolute;
-      bottom: 2px;
-      right: 3px;
+      bottom: 3px;
+      right: 4px;
       font-size: 0.5rem;
-      font-weight: normal;
+      font-weight: 600;
+      color: var(--text-brown);
+    }
+
+    .points-display {
+      text-align: center;
+      padding: 1rem;
+      background: linear-gradient(135deg, var(--harvest-gold) 0%, var(--gold-light) 50%, var(--harvest-gold) 100%);
+      border-radius: 4px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
+    }
+
+    .points-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-brown);
+      margin-bottom: 0.25rem;
+    }
+
+    .points-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--text-dark);
+    }
+
+    footer {
+      margin-top: 3rem;
+      text-align: center;
+      animation: fadeSlideUp 0.8s ease-out 0.4s both;
+    }
+
+    .footer-text {
+      font-size: 0.75rem;
+      color: var(--text-brown);
+      opacity: 0.7;
+    }
+
+    .decorative-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .decorative-line::before,
+    .decorative-line::after {
+      content: '';
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--wood-brown), transparent);
+    }
+
+    .decorative-line span {
+      color: var(--wood-brown);
+      font-size: 1.2rem;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Scrabble Dictionary</h1>
-      <p class="subtitle">The Official Word Reference</p>
-      <span class="official">Tournament Approved</span>
-    </header>
+  <div class="page-border">
+    <div class="container">
+      <header>
+        <div class="emblem">
+          <span class="emblem-letter">S</span>
+        </div>
+        <h1>Scrabble Dictionary</h1>
+        <p class="subtitle">The Official Word Reference</p>
+        <span class="badge">Tournament Approved</span>
+      </header>
 
-    <div class="search-box">
-      <label for="word">Enter a word to verify</label>
-      <div class="input-group">
-        <input type="text" id="word" placeholder="Type a word..." autocomplete="off" autofocus>
-        <button onclick="checkWord()">Check</button>
+      <div class="search-card">
+        <label for="word">Enter a word to verify</label>
+        <div class="input-group">
+          <input type="text" id="word" placeholder="Type any word..." autocomplete="off" autofocus>
+          <button onclick="checkWord()">Check</button>
+        </div>
+
+        <div class="result" id="result">
+          <div class="result-header">
+            <span class="result-word" id="result-word"></span>
+            <span class="result-status">Valid Word</span>
+          </div>
+          <div class="tiles" id="tiles"></div>
+          <div class="points-display">
+            <div class="points-label">Base Point Value</div>
+            <div class="points-value"><span id="points">0</span> Points</div>
+          </div>
+        </div>
       </div>
 
-      <div class="result" id="result">
-        <div class="result-word" id="result-word"></div>
-        <div class="result-status">Valid Scrabble word</div>
-        <div class="points" id="points"></div>
-        <div class="tiles" id="tiles"></div>
-      </div>
+      <footer>
+        <div class="decorative-line"><span>✦</span></div>
+        <p class="footer-text">© 2026 Official Scrabble Players Dictionary</p>
+        <p class="footer-text">SCRABBLE® is a registered trademark.</p>
+      </footer>
     </div>
-
-    <footer>
-      <p>© 2026 Official Scrabble Players Dictionary</p>
-      <p>SCRABBLE® is a registered trademark.</p>
-    </footer>
   </div>
 
   <script>
@@ -265,10 +473,11 @@
       const tilesContainer = document.getElementById('tiles');
       tilesContainer.innerHTML = '';
       
-      word.toUpperCase().split('').forEach(letter => {
+      word.toUpperCase().split('').forEach((letter, index) => {
         if (pointValues[letter]) {
           const tile = document.createElement('div');
           tile.className = 'tile';
+          tile.style.animationDelay = `${index * 0.05}s`;
           tile.innerHTML = `${letter}<sup>${pointValues[letter]}</sup>`;
           tilesContainer.appendChild(tile);
         }
@@ -286,10 +495,12 @@
       const points = document.getElementById('points');
       
       resultWord.textContent = word.toUpperCase();
-      points.textContent = `Base point value: ${calculatePoints(word)} points`;
+      points.textContent = calculatePoints(word);
       createTiles(word);
       
-      result.className = 'result show valid';
+      result.classList.remove('show');
+      void result.offsetWidth; // Trigger reflow for animation
+      result.classList.add('show');
     }
 
     document.getElementById('word').addEventListener('keypress', function(e) {

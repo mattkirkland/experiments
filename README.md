@@ -85,6 +85,19 @@ Each experiment needs an `og-image.png` (1200×630px). To create one:
 3. Take a screenshot and save as `og-image.png`
 4. Delete the `og-generator.html` file (don't commit it)
 
+### Design principles
+
+Follow the **frontend-design skill** guidelines (see `~/clawd/skills/frontend-design/SKILL.md`):
+
+- **Be distinctive**: Avoid generic AI aesthetics. No Inter, Roboto, or system fonts. No purple gradients on white.
+- **Commit to a direction**: Pick a bold aesthetic (vintage, brutalist, maximalist, refined minimal, retro-futuristic, etc.) and execute it fully.
+- **Typography matters**: Use interesting, characterful fonts. Pair a distinctive display font with a refined body font.
+- **Add atmosphere**: Use textures, gradients, patterns, shadows — not just solid colors.
+- **Motion & delight**: Staggered animations on load, surprising hover states, micro-interactions.
+- **Be memorable**: What's the one thing someone will remember about this page?
+
+Every experiment should feel genuinely designed, not AI-generated.
+
 ### Checklist
 
 - [ ] Folder created with `index.html`
@@ -92,3 +105,4 @@ Each experiment needs an `og-image.png` (1200×630px). To create one:
 - [ ] Plausible script included
 - [ ] OG meta tags added
 - [ ] `og-image.png` created (1200×630)
+- [ ] Follows frontend-design principles (distinctive, memorable, no generic aesthetics)
