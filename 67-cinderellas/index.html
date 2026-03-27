@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>67 Cinderellas</title>
+  <script async defer data-domain="mattkirkland.com" src="https://plausible.io/js/plausible.js"></script>
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="67 Cinderellas">
+  <meta property="og:description" content="Spin the wheel. Are you Cinderella?">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://experiments.mattkirkland.com/67-cinderellas/">
+  <meta property="og:image" content="https://experiments.mattkirkland.com/67-cinderellas/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="67 Cinderellas">
+  <meta name="twitter:description" content="Spin the wheel. Are you Cinderella?">
+  <meta name="twitter:image" content="https://experiments.mattkirkland.com/67-cinderellas/og-image.png">
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👠</text></svg>">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --midnight: #0d0a1a;
+      --deep-purple: #1a1428;
+      --royal: #2d1b4e;
+      --gold: #d4af37;
+      --gold-light: #f4e4a6;
+      --silver: #c0c0c0;
+      --glass: rgba(200, 220, 255, 0.15);
+      --sparkle: #fff8e7;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      background: var(--midnight);
+      color: var(--sparkle);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Starfield background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse at 20% 20%, var(--royal) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, var(--deep-purple) 0%, transparent 50%),
+        var(--midnight);
+      z-index: -2;
+    }
+
+    /* Floating sparkles */
+    .sparkles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--gold-light);
+      border-radius: 50%;
+      animation: twinkle 3s ease-in-out infinite;
+      box-shadow: 0 0 6px var(--gold), 0 0 12px var(--gold-light);
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
+    .container {
+      text-align: center;
+      padding: 2rem;
+      max-width: 600px;
+    }
+
+    h1 {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      color: var(--gold);
+      text-shadow: 
+        0 0 20px rgba(212, 175, 55, 0.5),
+        0 2px 4px rgba(0,0,0,0.5);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    .subtitle {
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--silver);
+      margin-bottom: 3rem;
+      opacity: 0.9;
+    }
+
+    /* The Wheel */
+    .wheel-container {
+      position: relative;
+      width: 320px;
+      height: 320px;
+      margin: 0 auto 2rem;
+    }
+
+    .wheel {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      position: relative;
+      transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+      background: conic-gradient(
+        from 0deg,
+        var(--royal) 0deg 5.37deg,
+        var(--deep-purple) 5.37deg 10.75deg,
+        var(--royal) 10.75deg 16.12deg,
+        var(--deep-purple) 16.12deg 21.49deg,
+        var(--royal) 21.49deg 26.87deg,
+        var(--deep-purple) 26.87deg 32.24deg,
+        var(--royal) 32.24deg 37.61deg,
+        var(--deep-purple) 37.61deg 42.99deg,
+        var(--royal) 42.99deg 48.36deg,
+        var(--deep-purple) 48.36deg 53.73deg,
+        var(--royal) 53.73deg 59.1deg,
+        var(--deep-purple) 59.1deg 64.48deg,
+        var(--royal) 64.48deg 69.85deg,
+        var(--deep-purple) 69.85deg 75.22deg,
+        var(--royal) 75.22deg 80.6deg,
+        var(--deep-purple) 80.6deg 85.97deg,
+        var(--royal) 85.97deg 91.34deg,
+        var(--deep-purple) 91.34deg 96.72deg,
+        var(--royal) 96.72deg 102.09deg,
+        var(--deep-purple) 102.09deg 107.46deg,
+        var(--royal) 107.46deg 112.84deg,
+        var(--deep-purple) 112.84deg 118.21deg,
+        var(--royal) 118.21deg 123.58deg,
+        var(--deep-purple) 123.58deg 128.96deg,
+        var(--royal) 128.96deg 134.33deg,
+        var(--deep-purple) 134.33deg 139.7deg,
+        var(--royal) 139.7deg 145.07deg,
+        var(--deep-purple) 145.07deg 150.45deg,
+        var(--royal) 150.45deg 155.82deg,
+        var(--deep-purple) 155.82deg 161.19deg,
+        var(--royal) 161.19deg 166.57deg,
+        var(--deep-purple) 166.57deg 171.94deg,
+        var(--royal) 171.94deg 177.31deg,
+        #d4af37 177.31deg 182.69deg,
+        var(--royal) 182.69deg 188.06deg,
+        var(--deep-purple) 188.06deg 193.43deg,
+        var(--royal) 193.43deg 198.81deg,
+        var(--deep-purple) 198.81deg 204.18deg,
+        var(--royal) 204.18deg 209.55deg,
+        var(--deep-purple) 209.55deg 214.93deg,
+        var(--royal) 214.93deg 220.3deg,
+        var(--deep-purple) 220.3deg 225.67deg,
+        var(--royal) 225.67deg 231.04deg,
+        var(--deep-purple) 231.04deg 236.42deg,
+        var(--royal) 236.42deg 241.79deg,
+        var(--deep-purple) 241.79deg 247.16deg,
+        var(--royal) 247.16deg 252.54deg,
+        var(--deep-purple) 252.54deg 257.91deg,
+        var(--royal) 257.91deg 263.28deg,
+        var(--deep-purple) 263.28deg 268.66deg,
+        var(--royal) 268.66deg 274.03deg,
+        var(--deep-purple) 274.03deg 279.4deg,
+        var(--royal) 279.4deg 284.78deg,
+        var(--deep-purple) 284.78deg 290.15deg,
+        var(--royal) 290.15deg 295.52deg,
+        var(--deep-purple) 295.52deg 300.9deg,
+        var(--royal) 300.9deg 306.27deg,
+        var(--deep-purple) 306.27deg 311.64deg,
+        var(--royal) 311.64deg 317.01deg,
+        var(--deep-purple) 317.01deg 322.39deg,
+        var(--royal) 322.39deg 327.76deg,
+        var(--deep-purple) 327.76deg 333.13deg,
+        var(--royal) 333.13deg 338.51deg,
+        var(--deep-purple) 338.51deg 343.88deg,
+        var(--royal) 343.88deg 349.25deg,
+        var(--deep-purple) 349.25deg 354.63deg,
+        var(--royal) 354.63deg 360deg
+      );
+      box-shadow: 
+        0 0 0 8px var(--gold),
+        0 0 0 12px var(--deep-purple),
+        0 0 40px rgba(212, 175, 55, 0.3),
+        inset 0 0 60px rgba(0,0,0,0.5);
+    }
+
+    .wheel::after {
+      content: '👠';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 3rem;
+      filter: drop-shadow(0 0 10px var(--gold));
+    }
+
+    /* Pointer */
+    .pointer {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-top: 30px solid var(--gold);
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+      z-index: 10;
+    }
+
+    .spin-btn {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 1.3rem;
+      padding: 1rem 3rem;
+      background: linear-gradient(135deg, var(--gold) 0%, #b8960c 100%);
+      color: var(--midnight);
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 
+        0 4px 15px rgba(212, 175, 55, 0.4),
+        inset 0 1px 0 rgba(255,255,255,0.3);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .spin-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 
+        0 6px 25px rgba(212, 175, 55, 0.6),
+        inset 0 1px 0 rgba(255,255,255,0.3);
+    }
+
+    .spin-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    /* Results */
+    .result {
+      margin-top: 2rem;
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .result-text {
+      font-size: 1.8rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
+    }
+
+    .result-text.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .result-text.winner {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 2.5rem;
+      color: var(--gold);
+      text-shadow: 0 0 30px var(--gold);
+      animation: glow 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 30px var(--gold), 0 0 60px var(--gold); }
+      to { text-shadow: 0 0 50px var(--gold), 0 0 100px var(--gold-light); }
+    }
+
+    .result-text.loser {
+      color: var(--silver);
+      font-style: italic;
+    }
+
+    .result-sub {
+      font-size: 1.1rem;
+      color: var(--silver);
+      margin-top: 0.5rem;
+      opacity: 0.8;
+    }
+
+    .try-again {
+      margin-top: 1.5rem;
+      font-size: 1rem;
+      color: var(--gold);
+      background: none;
+      border: 1px solid var(--gold);
+      padding: 0.5rem 1.5rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .try-again:hover {
+      background: var(--gold);
+      color: var(--midnight);
+    }
+
+    footer {
+      position: fixed;
+      bottom: 1rem;
+      font-size: 0.9rem;
+      color: var(--silver);
+      opacity: 0.6;
+    }
+
+    footer a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    /* Confetti for winner */
+    .confetti {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 100;
+    }
+
+    .confetti-piece {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: var(--gold);
+      animation: confetti-fall 3s ease-out forwards;
+    }
+
+    @keyframes confetti-fall {
+      0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sparkles" id="sparkles"></div>
+  
+  <div class="container">
+    <h1>67 Cinderellas</h1>
+    <p class="subtitle">One glass slipper. Sixty-seven hopefuls.</p>
+    
+    <div class="wheel-container">
+      <div class="pointer"></div>
+      <div class="wheel" id="wheel"></div>
+    </div>
+    
+    <button class="spin-btn" id="spinBtn">Spin the Wheel</button>
+    
+    <div class="result" id="result"></div>
+  </div>
+  
+  <footer>
+    <a href="https://experiments.mattkirkland.com">← More experiments</a>
+  </footer>
+
+  <script>
+    // Create sparkles
+    const sparklesContainer = document.getElementById('sparkles');
+    for (let i = 0; i < 50; i++) {
+      const sparkle = document.createElement('div');
+      sparkle.className = 'sparkle';
+      sparkle.style.left = Math.random() * 100 + '%';
+      sparkle.style.top = Math.random() * 100 + '%';
+      sparkle.style.animationDelay = Math.random() * 3 + 's';
+      sparkle.style.animationDuration = (2 + Math.random() * 2) + 's';
+      sparklesContainer.appendChild(sparkle);
+    }
+
+    const wheel = document.getElementById('wheel');
+    const spinBtn = document.getElementById('spinBtn');
+    const result = document.getElementById('result');
+    
+    let currentRotation = 0;
+    let isSpinning = false;
+
+    // The golden segment (Cinderella) is at position 33 (177.31deg to 182.69deg)
+    // That's roughly at the 180 degree mark
+    const CINDERELLA_SEGMENT = 33;
+    const SEGMENT_SIZE = 360 / 67; // ~5.37 degrees per segment
+
+    function spin() {
+      if (isSpinning) return;
+      isSpinning = true;
+      spinBtn.disabled = true;
+      result.innerHTML = '';
+
+      // Decide outcome: 1/67 chance to win
+      const isWinner = Math.random() < (1 / 67);
+      
+      // Calculate target rotation
+      let targetSegment;
+      if (isWinner) {
+        targetSegment = CINDERELLA_SEGMENT;
+      } else {
+        // Pick any segment except Cinderella
+        do {
+          targetSegment = Math.floor(Math.random() * 67);
+        } while (targetSegment === CINDERELLA_SEGMENT);
+      }
+
+      // Calculate rotation to land pointer on target segment
+      // Pointer is at top (0 degrees), so we need to rotate wheel so target is at top
+      const targetAngle = targetSegment * SEGMENT_SIZE + (SEGMENT_SIZE / 2);
+      const extraSpins = 5 + Math.floor(Math.random() * 3); // 5-7 full rotations
+      const totalRotation = (extraSpins * 360) + (360 - targetAngle);
+      
+      currentRotation += totalRotation;
+      wheel.style.transform = `rotate(${currentRotation}deg)`;
+
+      // Show result after spin
+      setTimeout(() => {
+        showResult(isWinner);
+        isSpinning = false;
+        spinBtn.disabled = false;
+      }, 4200);
+    }
+
+    function showResult(isWinner) {
+      if (isWinner) {
+        result.innerHTML = `
+          <div class="result-text winner show">✨ You Are Cinderella ✨</div>
+          <div class="result-sub">The glass slipper fits!</div>
+          <button class="try-again" onclick="location.reload()">Spin Again</button>
+        `;
+        createConfetti();
+      } else {
+        const messages = [
+          "The slipper doesn't fit...",
+          "Perhaps at the next ball...",
+          "Not this time, dear...",
+          "The clock strikes twelve...",
+          "Back to the ashes...",
+          "The prince moves on..."
+        ];
+        const msg = messages[Math.floor(Math.random() * messages.length)];
+        result.innerHTML = `
+          <div class="result-text loser show">${msg}</div>
+          <div class="result-sub">1 in 67 chance. Try again?</div>
+          <button class="try-again" onclick="spin()">Spin Again</button>
+        `;
+      }
+    }
+
+    function createConfetti() {
+      const confettiContainer = document.createElement('div');
+      confettiContainer.className = 'confetti';
+      document.body.appendChild(confettiContainer);
+
+      const colors = ['#d4af37', '#f4e4a6', '#fff8e7', '#c0c0c0', '#ffd700'];
+      
+      for (let i = 0; i < 100; i++) {
+        const piece = document.createElement('div');
+        piece.className = 'confetti-piece';
+        piece.style.left = Math.random() * 100 + '%';
+        piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+        piece.style.animationDelay = Math.random() * 0.5 + 's';
+        piece.style.width = (5 + Math.random() * 10) + 'px';
+        piece.style.height = (5 + Math.random() * 10) + 'px';
+        piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+        confettiContainer.appendChild(piece);
+      }
+
+      setTimeout(() => confettiContainer.remove(), 4000);
+    }
+
+    spinBtn.addEventListener('click', spin);
+  </script>
+</body>
+</html>

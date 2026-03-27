@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cormorant+Garamond:ital@1&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 1200px;
+      height: 630px;
+      overflow: hidden;
+    }
+    body {
+      background: linear-gradient(135deg, #0d0a1a 0%, #1a1428 50%, #2d1b4e 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      text-align: center;
+      position: relative;
+    }
+    
+    /* Stars */
+    body::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: 
+        radial-gradient(2px 2px at 20px 30px, #f4e4a6, transparent),
+        radial-gradient(2px 2px at 40px 70px, #fff8e7, transparent),
+        radial-gradient(1px 1px at 90px 40px, #d4af37, transparent),
+        radial-gradient(2px 2px at 130px 80px, #f4e4a6, transparent),
+        radial-gradient(1px 1px at 160px 120px, #fff8e7, transparent),
+        radial-gradient(2px 2px at 200px 50px, #d4af37, transparent),
+        radial-gradient(1px 1px at 250px 90px, #f4e4a6, transparent),
+        radial-gradient(2px 2px at 300px 30px, #fff8e7, transparent),
+        radial-gradient(1px 1px at 350px 110px, #d4af37, transparent),
+        radial-gradient(2px 2px at 400px 60px, #f4e4a6, transparent),
+        radial-gradient(2px 2px at 500px 40px, #fff8e7, transparent),
+        radial-gradient(1px 1px at 550px 100px, #d4af37, transparent),
+        radial-gradient(2px 2px at 600px 70px, #f4e4a6, transparent),
+        radial-gradient(1px 1px at 700px 30px, #fff8e7, transparent),
+        radial-gradient(2px 2px at 750px 90px, #d4af37, transparent),
+        radial-gradient(2px 2px at 850px 50px, #f4e4a6, transparent),
+        radial-gradient(1px 1px at 900px 110px, #fff8e7, transparent),
+        radial-gradient(2px 2px at 950px 40px, #d4af37, transparent),
+        radial-gradient(1px 1px at 1000px 80px, #f4e4a6, transparent),
+        radial-gradient(2px 2px at 1050px 60px, #fff8e7, transparent),
+        radial-gradient(2px 2px at 1100px 100px, #d4af37, transparent),
+        radial-gradient(1px 1px at 1150px 30px, #f4e4a6, transparent);
+      background-repeat: repeat;
+      background-size: 1200px 150px;
+    }
+    
+    .slipper {
+      font-size: 120px;
+      margin-bottom: 20px;
+      filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.6));
+    }
+    
+    h1 {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 90px;
+      color: #d4af37;
+      text-shadow: 
+        0 0 40px rgba(212, 175, 55, 0.5),
+        0 4px 8px rgba(0,0,0,0.5);
+      letter-spacing: 0.05em;
+      margin-bottom: 20px;
+    }
+    
+    .subtitle {
+      font-size: 36px;
+      font-style: italic;
+      color: #c0c0c0;
+    }
+    
+    .domain {
+      position: absolute;
+      bottom: 30px;
+      font-size: 22px;
+      color: #6b6b80;
+      letter-spacing: 0.1em;
+    }
+  </style>
+</head>
+<body>
+  <div class="slipper">👠</div>
+  <h1>67 Cinderellas</h1>
+  <p class="subtitle">Spin the wheel. Are you Cinderella?</p>
+  <div class="domain">experiments.mattkirkland.com</div>
+</body>
+</html>
